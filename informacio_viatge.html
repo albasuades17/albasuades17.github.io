@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Easy Travel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-
+    BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="menu-plegable.js"></script>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="row header">
+      <div class="col">
+        <button style="background-color:#72bb53; color: white; border:none" onclick="location.href='index.html'">
+          <h1 style="display: inline;">Easy Travel</h1>
+        </button>
+        <!-- Horizontal navigation bar -->
+        <nav id="horizontal-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vols.html">Vols</a></li>
+            <li><a href="hotels.html">Hotels</a></li>
+            <li><a href="activitats_itinerari.html">Activitats + Itinerari</a></li>
+            <li><a href="informacio_viatge.html" class="active">Informació del teu viatge</a></li>
+            <li><a href="valorar_itinerari.html">Valora itineraris</a></li>
+          </ul>
+        </nav>
+        <div id="menu">
+          <!-- Hamburguer menu icon -->
+          <a href="#" id="menu-link" onclick="toggleMenu();"><i></i></a>
+        </div>
+        <!-- Horizontal navigation bar -->
+        <nav id="block-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vols.html">Vols</a></li>
+            <li><a href="hotels.html">Hotels</a></li>
+            <li><a href="activitats_itinerari.html">Activitats + Itinerari</a></li>
+            <li><a href="informacio_viatge.html" class="active">Informació del teu viatge</a></li>
+            <li><a href="valorar_itinerari.html">Valora itineraris</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-md">
+        <div style="width: 80%; margin: auto;">
+          <h3 class="resum-viatge-titol">Vols</h3>
+          <p>No hi ha cap vol reservat</p>
+          <hr>
+          <h3 class="resum-viatge-titol">Hotels</h3>
+          <p>No hi ha cap hotel reservat</p>
+          <hr>
+          <h3 class="resum-viatge-titol">Itinerari</h3>
+          <div class = "itinerari_exposition">
+            <div class = "itinerari_exposed" id = "itinerari_exposed 1">
+                <p>París, 3 dies</p>
+                <div id ="elteu-itinerari" class="itinerary" style="display: flex; flex-direction: column; margin:5px">
+                  <div v-for="day in days" :key="day">
+                      <div class="day" :data-day-id="day" >
+                          <h4>Dia {{day}}</h4>
+                          <div class="activity-list">
+                              <span v-if="!itinerary[day] || itinerary[day].length === 0">Selecciona una activitat per aquest dia</span>
+                              <div v-else>
+                                  <div v-for="(activity, index) in itinerary[day]" :key="index + activity.name" class="activityItinerari">
+                                    <p style="margin-right: 30px; bottom: 2px">{{ activity.name }}</p>
+                                    <button class="remove-activity" @click="removeActivity(day, activity)">X</button>
+                                    <button  @click="showPopUp(activity)" class="button_info">
+                                      <img src="./imagenes/info_icon.png" alt="More Info" class="more_info_icon" style="width: 20px; height:auto;">
+                                    </button>
+  
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+      
+      
+    </div>
+
+    
+    
+  </div>
+
+  <div class="popup" id="popup">
+    <h2 id = "pop_up_activity_name" class = "activity_title"></h2>
+    <button class="close-activity" onclick="closePopUp()">X</button>
+    <div class = "container-fluid">
+      <div class="row">
+        <div class="col-md-4">
+          <img id = "pop_up_image_activity" class = "img-fluid" src="imagenes\disneyland.jpg" alt="disneyland">
+        </div>
+        <div class="col-md-8" style = "text-align: left; padding: 2px;">
+          <p class="apartats_pop_up">Horaris</p>
+          <p id = "pop_up_horaris_activity"></p>
+          <p class="apartats_pop_up">Localització</p>
+          <p id = "pop_up_localitzacio_activity"></p>
+          <p class="apartats_pop_up">Preu</p>
+          <p id = "pop_up_preu_activity"></p>
+          <p class="apartats_pop_up">Descripció</p>
+          <p id = "pop_up_descripcio_activity"></p>
+        </div>
+      </div>
+    </div> 
+  </div>
+
+    
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#elteu-itinerari',
+        data: {
+            days: [1, 2, 3],
+            itinerary: restoreObject("itinerary")
+        },
+        methods: {
+          updateActivity(activity) {
+            if (activity.selectedDay !== '') {
+              const day = parseInt(activity.selectedDay);
+              if (!this.itinerary[day]) {
+                this.$set(this.itinerary, day, [activity]); // Update the itinerary object
+                activity.days.push(day);
+              } else {
+                const index = this.itinerary[day].indexOf(activity);
+                if (index === -1) {
+                  this.itinerary[day].push(activity);
+                  activity.days.push(day);
+                }
+              }
+              storeObject("itinerary", this.itinerary);
+              activity.selectedDay = '';
+            }
+          },
+          removeActivity(day, activity) {
+            const index = this.itinerary[day].indexOf(activity);
+            if (index > -1) {
+              this.itinerary[day].splice(index, 1);
+              this.$set(this.itinerary, day, this.itinerary[day]); // Update the itinerary object
+            }
+
+            const dayIndex = activity.days.indexOf(day);
+            if (dayIndex > -1) {
+              activity.days.splice(dayIndex, 1);
+            }
+
+            storeObject("itinerary", this.itinerary);
+          },
+          showPopUp(activity) {
+              // Get the popup element and display it
+              var popup = document.getElementById("popup");
+              popup.style.display = "block";
+
+              var activity_name = document.getElementById("pop_up_activity_name");
+              activity_name.innerHTML = activity.name;
+
+              var activity_image = document.getElementById("pop_up_image_activity");
+              activity_image.src = activity.image;
+              activity_image.alt = activity.name;
+
+              var activity_hours = document.getElementById("pop_up_horaris_activity");
+              activity_hours.innerHTML = activity.hours;
+
+              var activity_location = document.getElementById("pop_up_localitzacio_activity");
+              activity_location.innerHTML = activity.location;
+
+              var activity_price = document.getElementById("pop_up_preu_activity");
+              activity_price.innerHTML = activity.price;
+
+              var activity_description = document.getElementById("pop_up_descripcio_activity");
+              activity_description.innerHTML = activity.description;
+
+            },
+
+            showPopUpDelayed(activity) {
+              closePopUpSlowly();
+              
+              // Add a delay of 0.3 seconds before displaying the popup
+              setTimeout(function() {
+                // Get the popup element and display it
+                var popup = document.getElementById("popup");
+                popup.style.display = "block";
+                popup.style.opacity = 1.0;
+
+                var activity_name = document.getElementById("pop_up_activity_name");
+                activity_name.innerHTML = activity.name;
+
+                var activity_image = document.getElementById("pop_up_image_activity");
+                activity_image.src = activity.image;
+                activity_image.alt = activity.name;
+
+                var activity_hours = document.getElementById("pop_up_horaris_activity");
+                activity_hours.innerHTML = "Horaris: " + activity.hours;
+
+                var activity_location = document.getElementById("pop_up_localitzacio_activity");
+                activity_location.innerHTML = "Localització: " + activity.location;
+
+                var activity_price = document.getElementById("pop_up_preu_activity");
+                activity_price.innerHTML = "Preu: " + activity.price;
+
+                var activity_description = document.getElementById("pop_up_descripcio_activity");
+                activity_description.innerHTML = "Descripció: " + activity.description;
+              },150); // 0.3 seconds delay
+            }
+        }
+      });
+    </script>
+    <script>
+
+      function closePopUp() {
+        // Get the popup element and hide it
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+      }
+
+      function closePopUpSlowly() {
+        var popup = document.getElementById("popup");
+        var opacity = 1.0;
+
+        // Set up an interval to gradually reduce the opacity
+        var intervalId = setInterval(function() {
+          opacity -= 0.2;
+          popup.style.opacity = opacity;
+
+          if (opacity <= 0) {
+            // When the opacity reaches 0, stop the interval and hide the popup
+            clearInterval(intervalId);
+            popup.style.display = "none";
+            popup.style.opacity = 1.0; // reset the opacity for future use
+          }
+        }, 10); // 50 milliseconds delay between updates
+      }
+
+    </script>
+</body>
+</html>

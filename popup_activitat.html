@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Easy Travel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-
+    BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+      .related-activity{
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: transparent;
+        border-style: hidden;
+        padding: 20px;
+        transition: transform 0.2s ease-in-out;
+      }
+
+      .related-activity:hover {
+        transform: scale(1.1);
+      }
+
+      .close-button i::before, .close-button i::after {
+        content: "";
+        width: 30px;
+        height: 4px;
+        border-radius: 2px;
+        background-color: red;
+        position: absolute;
+        left: 0;
+        top: 20px;
+      }
+
+      .close-button i::before {
+        transform: rotate(45deg);
+      }
+
+      .close-button i::after {
+        transform: rotate(-45deg);
+      }
+    </style>
+    <script src="menu-plegable.js"></script>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+
+    <!-- Header -->
+    <div class="row header">
+      <div class="col">
+        <h1 style="display: inline;">Easy Travel</h1>
+        <!-- Horizontal navigation bar -->
+        <nav id="horizontal-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Vols</a></li>
+            <li><a href="#">Hotels</a></li>
+            <li><a href="activitats_itinerari.html" class="active">Activitats + Itinerari</a></li>
+            <li><a href="#">Informació del teu viatge</a></li>
+          </ul>
+        </nav>
+        <div id="menu">
+          <!-- Hamburguer menu icon -->
+          <a href="#" id="menu-link" onclick="toggleMenu();">Menú</a>
+        </div>
+        <!-- Horizontal navigation bar -->
+        <nav id="block-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#">Vols</a></li>
+            <li><a href="#">Hotels</a></li>
+            <li><a href="activitats_itinerari.html" class="active">Activitats + Itinerari</a></li>
+            <li><a href="#">Informació del teu viatge</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">      
+
+      <div class="col-md-10 main">
+          <div class="container activity-box">
+            <div class="row">
+              <div class="col activity-title">
+                <h2>Disneyland París</h2>
+              </div>
+              <div class="close-button"><i></i></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-4">
+                <img src="imagenes\disneyland.jpg" alt="disneyland">
+              </div>
+              <div class="col-lg-8">
+                <p>Horaris: Tots els dies de 10h fins a les 23h</p>
+                <p>Localització: Bd de Parc, 77700 Coupvray, França</p>
+                <p>Preu: 120€</p>
+                <p>Descripció: Parc d'atraccions per tots els publics, amb temàtica de Disney.</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <h4>Activitats relacionades:</h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="related-activity">
+                  <img src="imagenes\torre.jpg" alt="Torre Eiffel" class="related-activity-image">
+                  <button>Torre Eiffel</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="related-activity">
+                  <img src="imagenes\louvre.jpg" alt="Museu del Louvre" class="related-activity-image">
+                  <button>Museu del Louvre</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="related-activity">
+                  <img src="imagenes\tour_paris.jpg" alt="Tour per París" class="related-activity-image">
+                  <button>Tour</button>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="related-activity">
+                  <img src="imagenes\esmorzar.jpg" alt="Esmorzar" class="related-activity-image">
+                  <button>Esmorzar</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+      </div>
+
+      
+      
+    </div>
+    
+  </div>
+    
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,659 @@
+*{
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+h1{
+  font-style: italic;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+/* Navigation menus */
+nav {
+    display: none;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+#menu {
+    position: relative;
+    float: right;
+}
+
+#menu i::before, #menu i::after, #menu i{
+    content: "";
+    width: 30px;
+    height: 3px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+  }
+
+  #menu i::before {
+    top: -7px;
+  }
+
+  #menu i::after {
+    top: 7px;
+  }
+
+nav a, #menu a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    text-decoration: none;
+    transition: transform 0.2s ease-in-out;
+}    
+
+nav a:hover, #menu a:hover {
+    transform: scale(1.1);
+    background-color: #72bb53;
+    color: white
+}    
+
+nav a.active {
+    font-weight: bold;
+}    
+
+@media screen and (min-width: 1100px){
+    #menu {
+        display: none;
+    }
+
+    #horizontal-nav {
+        display: inline;
+    }
+}
+
+#horizontal-nav ul, #horizontal-nav li {
+    display: inline;
+}
+
+#horizontal-nav ul {
+    float: right;
+}
+
+#block-nav {
+    position: absolute;
+    right: 20px;
+    z-index: 2;
+    background-color: #72bb53;
+    border: 1px solid rgba(255,255,255,0.5);
+    width:fit-content;
+    height: fit-content;
+}
+
+#block-nav ul {
+    padding: 0px;
+}
+
+#block-nav a {
+    width: 100%;
+}
+
+
+.header {
+    background-color: #72bb53;
+    color: #f2f2f2;
+    padding: 10px;
+    text-align: left;
+    @media (min-width: 768px){
+        z-index: 1;
+    }
+}
+/*Estils de l'índex*/
+
+.destination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+  margin-bottom: 20px;
+}
+
+.destination {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  padding: 15px;
+}
+
+.destination:hover {
+  transform: scale(1.06);
+}
+
+.destination.selected {
+  border: 2px solid #72bb53;
+  transform: scale(1.06);
+  border-radius: 4px;
+}
+
+.destination img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+  overflow: hidden;
+  padding:10px;
+}
+.destination h3{
+  text-align: center;
+  font-size: 1.2em;
+  padding: 5px;
+}
+
+#classic-button{
+  float:right;
+  color: #72bb53;
+  background-color: white;
+  border: 2px solid #72bb53;
+  border-radius: 5px;
+  height: 2.5em;
+}
+
+
+
+.enconstruccio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main {
+    min-height: 80vh;
+}
+
+.activity-box {
+    position: relative;
+    top: 4%;
+    left: 2%;
+    width: 96%;
+    height: 80vh;
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.activity-box * {
+    max-width: 96%;
+}
+
+.activity-title, .related-title {
+    color: #72bb53;
+}
+
+.close-button {
+    position:relative;
+    width: fit-content;
+    top: 0px;
+    left: 7%;
+}
+
+.related-activity {
+    border: 1px solid #72bb53;
+    height: 255px;
+    width: 205px;
+    margin-bottom: 5px;
+}
+
+.related-activity-image {
+    position: relative;
+    left: 3px;
+    height: 200px;
+    width: 200px;
+}
+
+.related-activity > button {
+    position: relative;
+    left: 3px;
+    width: 200px;
+    height: 50px;
+    background-color: #72bb53;
+}
+
+.related-activity:hover > button {
+    background-color: lime;
+}
+.flex_container_activitats{
+  padding-left: 1px; 
+  display: flex;
+  @media (max-width: 768px){
+      flex-direction: column;
+  }
+}
+
+.image_container_activitats{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.image_activitats_wrapper{
+display: flex;
+text-align: center;
+justify-content: center;
+align-items: center;
+flex-direction: column;
+background-color: transparent;
+border-style: hidden;
+padding: 20px;
+transition: transform 0.2s ease-in-out;
+}
+
+.image_activitats_text{
+overflow: hidden;
+display: -webkit-box;
+-webkit-line-clamp: 2; /* number of lines to show */
+        line-clamp: 2; 
+-webkit-box-orient: vertical;
+}
+
+
+.image_activitats{
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 10px;
+  object-fit: cover;
+  
+}
+
+
+.image_activitats_wrapper:hover {
+  transform: scale(1.06);
+}
+
+.itinerary {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+    width: 100%;
+    padding: 10px;
+}
+
+.activity-list {
+  min-height: 60px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  
+  
+}
+.activity {
+margin-bottom: 5px;
+padding: 5px;
+background-color: #fff;
+border: 1px solid #ddd;
+display: flex;
+}
+
+.activityItinerari {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    z-index: 0;
+    width: fit-content;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    
+}
+
+.remove-activity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: white;
+  color: rgb(251, 112, 112);
+  
+  border: none;
+  cursor: pointer;
+}
+.remove-activity:hover{
+  color: red;
+  font-weight: bolder;
+}
+.button_info{
+  background-color: white;
+  border:none;
+  position: absolute;
+  bottom:0;
+  right:0;
+  cursor: pointer;
+}
+.more_info_icon:hover{
+  opacity: 0.5;
+}
+.botoItinerari{
+  color: #72bb53;
+  margin: 5px;
+  background-color: white;
+  border: 2px solid #72bb53;
+  border-radius: 5px;
+  height: 2.5em;
+  transition: transform 0.2s ease-in-out;
+}
+.botoItinerari:hover{
+    transform: scale(1.06);
+}
+.activity {
+  margin-bottom: 5px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  display: flex;
+}
+
+.activityItinerari {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    z-index: 0;
+    width: fit-content;
+    display: inline-block;
+    margin-right: 10px;
+    position: relative;
+    
+}
+
+.remove-activity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: white;
+  color: rgb(251, 112, 112);
+  
+  border: none;
+  cursor: pointer;
+}
+.remove-activity:hover{
+  color: red;
+  font-weight: bolder;
+}
+
+.close-activity {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: white;
+  color: rgb(251, 112, 112);
+  border: none;
+  cursor: pointer;
+  font-size: x-large;
+}
+.close-activity:hover{
+  color: red;
+  font-weight: bolder;
+}
+
+.button_info{
+  background-color: white;
+  border:none;
+  position: absolute;
+  bottom:0;
+  right:0;
+  cursor: pointer;
+}
+.more_info_icon:hover{
+  opacity: 0.5;
+}
+
+.popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 999;
+  width: 90%;
+  height: 90%;
+  overflow: auto;
+  border-radius: 10px;
+  border-style: solid;
+  border-color: #72bb53;
+}
+
+
+.related_activity{
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-style: hidden;
+  transition: transform 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.related_activity:hover {
+  transform: scale(1.04);
+}
+
+
+
+.activity_title{
+  color: #72bb53;
+  text-align: center;
+  padding: 4px;
+}
+
+.activitats_relacionades_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.apartats_pop_up {
+  position: relative;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.apartats_pop_up::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+}
+    
+.flex_container_activitats{
+  padding-left: 1px; 
+  display: flex;
+  @media (max-width: 768px){
+      flex-direction: column;
+  }
+}
+
+.image_container_activitats{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.image_activitats_wrapper{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+  border-style: hidden;
+  padding: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.image_activitats_text{
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+          line-clamp: 2; 
+  -webkit-box-orient: vertical;
+}
+
+
+.image_activitats{
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px;
+    object-fit: cover;
+    
+}
+
+
+.image_activitats_wrapper:hover {
+  transform: scale(1.06);
+}
+
+.itinerary {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day {
+    width: 100%;
+    padding: 10px;
+}
+
+.activity-list {
+  min-height: 60px;
+  background-color: #f5f5f5;
+  padding: 10px;
+  margin-top: 10px;
+  width: 100%;
+  
+  
+}
+      
+.activity_title{
+  color: #72bb53;
+  text-align: center;
+  padding: 4px;
+}
+
+.activitats_relacionades_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+.popup_recuperar {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #72bb53;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px #ccc;
+  z-index: 999;
+}
+.popup_recuperar h4 {
+  margin-top: 0;
+}
+
+.popup_recuperar label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.popup_recuperar input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+
+.publicar_button{
+  background-color: #72bb53; 
+  color: white; 
+  border-style: hidden; 
+  border-radius: 4px; 
+  font-size: larger;
+  transition: transform 0.2s ease-in-out;
+}
+
+.publicar_button:hover {
+  transform: scale(1.1);
+}
+
+.itinerari_exposition{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  gap: 15px;
+}
+
+.itinerari_exposed{
+  border-radius: 10px;
+  border-style: solid;
+  border-color: gray;
+  padding: 10px;
+}
+
+
+
+.like_button{
+  background-color: transparent;
+  border-style: hidden;
+  opacity: 1.5;
+}
+
+.like_button img{
+  width: 30px;
+  height: auto;
+}
+
+.like_button:hover{
+  opacity: 0.5;
+}
+
+/* Style for the liked heart */
+.liked {
+  filter: brightness(0) saturate(100%) invert(38%) sepia(100%) saturate(300%) hue-rotate(308deg) brightness(100%) contrast(89%);
+}
+
+#import-button {
+  margin: auto 10px;
+  padding: 5px;
+  width: fit-content;
+
+  position: relative;
+  top: 35px;
+  left: 70px;
+}
+
+.resum-viatge-titol {
+  color: #7bdc52;
+  text-decoration: underline;
+}
+      
+
+
