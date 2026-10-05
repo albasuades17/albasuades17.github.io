@@ -488,8 +488,23 @@ body:not(.user-is-tabbing) a:focus {
     transform: scale(1.2);
 }
 
+
 .work__image-box {
-    margin-bottom: var(--gutter-normal);
+  margin-bottom: var(--gutter-normal);
+  height: 350px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.work__image {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 @media(min-width: 901px) {
@@ -560,7 +575,14 @@ body:not(.user-is-tabbing) a:focus {
     .about__photo-container {
         flex: 1;
         margin: 0 var(--gutter-huge) 0 0;
+       
     }
+}
+
+.about__photo {
+   align-items: center;
+   justify-content: center;
+   height: 450px;
 }
 
 /* --------------------------------------- */
